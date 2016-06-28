@@ -1,0 +1,87 @@
+# RN开发指南
+## 开发环境搭建
+1. 安装node：
+2. 安装tnpm：`npm i -g tnpm --registry=http://registry.npm.alibaba-inc.com` 
+3. 安装yeoman、grunt：`tnpm i -g yo grunt-cli`
+4. 安装generator（Clam）：`tnpm i generator-clam@beta -g`
+5. 创建项目目录并进入：`h5-foo`
+6. 项目初始化：`yo clam:rn`，自动安装 node 依赖
+	* yo（[Yeoman](http://yeoman.io/)） 用于构建特定框架(代码)的工具，我们称之为生成器(generator)
+	* [查看详细说明](http://work.taobao.net/issues/51441#使用)
+7. 启动本地 RN 开发服务环境：`grunt dev`
+
+## 开发调试
+#### 打开调试面板
+<img  width="160" src="http://gtms04.alicdn.com/tps/i4/TB1LpFLKpXXXXc8XVXX46hU7FXX-550-950.png"/>
+	
+- iOS 
+	- 模拟器： `control + ⌘ + z`
+	- 真机：晃动设备
+- Android 打开调试面板
+	- 模拟器：
+	- 真机：晃动设备
+	
+#### 调试项
+- `Debug in Chrome` 
+	* 在Chrome上调试RN(暂且称为JS好区分)代码，会打开一个新的`http://localhost:8081/debugger-ui`页面。
+	* Chrome中可以使用`option+cammod+i`打开 开发者工具
+		
+		<img width="500" src="http://gtms01.alicdn.com/tps/i1/TB1ISKaKpXXXXbVXpXXeY0v2pXX-2466-730.png"/>
+- `Enable Live Reload`
+	* 实时刷新，就是我们修改了JS代码保存完成，RN page自动刷新
+-  `Enable Hot Reloading`
+	* [热加载](http://www.tuicool.com/articles/myYzmqB) - 可简单理解为“局部刷新”
+- `Show Inspector` / `Inspect Element`(检查元素)
+	* 检查元素
+- `Show Perf Monitor`
+	* 显示性能监视器，点击可展开查看详情
+		
+		<img width="240" src="http://gtms02.alicdn.com/tps/i2/TB1BOyfKpXXXXXCXpXXiJsU7pXX-550-438.png"/>
+	
+#### 刷新
+
+## 样式
+- 样式定义
+	
+	```
+	var styles = StyleSheet.create({
+		container: {
+			flex:1,
+			marginLeft:flexible(20)
+		},
+		ml10:{
+			marginLeft:flexible(10)
+		},
+	});
+	```
+- 使用样式
+	- 单个样式：`<View style={styles.container} />`
+	- 多个样式：`<View style={[styles.container, styles.ml10]} />`
+		* 最右边的优先级最高
+	- 在模板中创建样式对象：`<View style="{[styles.container, {width:90}]}"/>`
+		* 尽量不要这样做，因为每次渲染都会被重复创建
+	- [详见样式说明](http://reactnative.cn/docs/0.24/style.html#content)	
+
+- [弹性盒模型（Flexbox）](http://reactnative.cn/docs/0.24/flexbox.html)可结合[这篇文章进行理解](http://www.ibm.com/developerworks/cn/web/1409_chengfu_css3flexbox/)
+
+- <font color="red">把样式声明放到文件的末尾还可以确保它们只会在应用中被创建一次，而不是在每次渲染（render方法中）时都被重新创建。</font>
+
+## 在RN中封装和使用Native原生模块/UI组件
+- iOS
+	* [原生模块](http://reactnative.cn/docs/0.24/native-modules-ios.html#content)
+	* [原生UI组件](http://reactnative.cn/docs/0.24/native-component-ios.html#content)
+- Android 
+	* [原生模块](http://reactnative.cn/docs/0.24/native-modules-android.html#content)
+	* [原生UI组件](http://reactnative.cn/docs/0.24/native-component-android.html#content)
+- 样例：旺信
+
+## 参考资料（不是干货不show）
+- [React/React Native 的ES5 ES6写法对照表](http://bbs.reactnative.cn/topic/15/react-react-native-%E7%9A%84es5-es6%E5%86%99%E6%B3%95%E5%AF%B9%E7%85%A7%E8%A1%A8)
+- [react-native的性能](https://github.com/cnsnake11/blog/blob/master/ReactNative%E7%BF%BB%E8%AF%91/react-native%E7%9A%84%E6%80%A7%E8%83%BD.md)
+- 官方手册 [开始使用React Native](http://reactnative.cn/docs/0.24/getting-started.html#content) 
+- - Android：
+	* [Android RN应用运行及调试](http://itfish.net/article/53887.html)
+	* [Android RN运行机制解析](http://www.atatech.org/articles/50567)
+	* [react-native 中Java与JS的互相调用](http://www.atatech.org/articles/56808/?frm=mail_daily&uid=21551)
+- iOS：
+	* 
